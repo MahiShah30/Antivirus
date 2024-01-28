@@ -8,9 +8,10 @@ virusInfo= list(open("VirusInfo.txt","r").read().split('\n'))
 def sha256_hash(filename):
     with open(filename,"rb") as f: # rb--> open file in binary mode
         bytes=f.read()
-        md5Hash=hashlib.sha256(bytes).hexdigest() # Convert file into hash 
-    return md5Hash
-#print(md5_hash("keylogger.zip"))
+        sha256hash=hashlib.sha256(bytes).hexdigest() # Convert file into hash 
+        
+        f.close()
+    return sha256hash
 
 #Malware Detection By Hash
 def malware_checker(pathOfFile):
