@@ -1,4 +1,5 @@
 import hashlib
+import os 
 
 #Global Variable
 malware_hashes= list(open("virusHash.txt","r").read().split('\n'))
@@ -11,10 +12,11 @@ def sha256_hash(filename):
         sha256hash=hashlib.sha256(bytes).hexdigest() # Convert file into hash 
         
         f.close()
+        #print(sha256hash)
     return sha256hash
 
 #Malware Detection By Hash
-def malware_checker(pathOfFile):
+def malware_checker_one(pathOfFile):
     global malware_hashes
     global virusInfo
     
@@ -25,11 +27,13 @@ def malware_checker(pathOfFile):
         if i == hash_malware_check:
             return virusInfo[counter]
         counter += 1
+        
     return 0
 
-            
-        
-print(malware_checker("keylogger.zip"))
+#Malware Detection in folder 
+
+        #List of files
+print(malware_checker_one("keylogger.zip"))
 
 
 
