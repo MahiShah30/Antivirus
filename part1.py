@@ -10,15 +10,19 @@ def md5_hash(filename):
 #Malware Detection By Hash
 def malware_checker(pathOfFile):
     hash_malware_check=md5_hash(pathOfFile)
-    malware_hashes=open("virushash.txt","r")
-    malware_hashes_read=malware_hashes.read()
-    malware_hashes.close()
+    counter=0 
     
-    virusInfo=open("VirusInfo.txt","r").read()
-    if malware_hashes_read.find(hash_malware_check) !=-1:
-        return virusInfo[malware_hashes_read.index(hash_malware_check)]
-    else:
-            return "green"
+    malware_hashes= list(open("virusHash.txt","r").read().split('\n'))
+    virusInfo= list(open("VirusInfo.txt","r").read().split('\n'))
+
+    for i in malware_hashes:
+        if i == hash_malware_check:
+            return virusInfo[counter]
+        counter += 1
+    return 0
+
+            
+        
 print(malware_checker("keylogger.zip"))
 
 
